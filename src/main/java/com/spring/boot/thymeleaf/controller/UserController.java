@@ -1,8 +1,12 @@
 package com.spring.boot.thymeleaf.controller;
 
+import com.spring.boot.thymeleaf.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Mohammed Amr
@@ -23,6 +27,16 @@ public class UserController {
         // return to templates/demo.html
 
         return "demo";
+    }
+
+    @RequestMapping(path = "demo2")
+    public String demo2(Model model) {
+        List<User> usersList = new ArrayList<>();
+        usersList.add(new User(1, "Tom", 30));
+        usersList.add(new User(2, "Jerry", 29));
+        usersList.add(new User(3, "Nancy", 27));
+        model.addAttribute("list", usersList);
+        return "demo2";
     }
 
     private String convertGPA(double grade) {
