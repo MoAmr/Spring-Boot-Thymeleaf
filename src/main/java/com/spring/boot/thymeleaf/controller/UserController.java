@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +38,17 @@ public class UserController {
         usersList.add(new User(3, "Nancy", 27));
         model.addAttribute("list", usersList);
         return "demo2";
+    }
+
+    @RequestMapping(path = "demo3")
+    public String demo3(HttpServletRequest request, Model model) {
+        // Request
+        request.setAttribute("request", "request data");
+        // Session
+        request.getSession().setAttribute("session", "session data");
+        // Application
+        request.getSession().getServletContext().setAttribute("application", "application data");
+        return "demo3";
     }
 
     private String convertGPA(double grade) {
